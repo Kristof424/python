@@ -1,0 +1,15 @@
+SSH konfigurálása:
+1. egyedi állomásnév beállítása: Router(config)#hostname R1
+2. IP tartománynév beállítása: R1(config)#ip domain name jedlik.eu
+3. titkosító kulcs létrehozása:
+
+R1(config)#crypto key generate rsa
+… How many bits in the modulus [512]: 1024
+4. helyi felhasználó létrehozása: R1(config)#username admin secret Abc123456
+5. belépés engedélyezése helyi adatbázis alapján
+
+R1(config)#line vty 0
+R1(config-line)#login local
+
+6. SSH kapcsolódás engedélyezése:  R1(config-line)#transport input ssh
+7. SSH 2-es verziójának beállítása:  R1(config)#ip ssh version 2
